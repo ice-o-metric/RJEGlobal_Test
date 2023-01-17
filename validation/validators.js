@@ -40,10 +40,10 @@ function validateData(equipmentList, fieldMap, errors) {
     let counter = 2
     
     for (let equipment of equipmentList) {
-
-        
+        //For each line of equipment
 
         for (const item of fieldMap[Symbol.iterator]()) {
+            //For each field in that line
 
             let column = item[0];
             let vStr = item[1].validationString;

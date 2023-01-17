@@ -14,15 +14,12 @@ const server = http.createServer((req, res) => {
   csv().fromFile('./equipment_list.csv').then(
     async (jsonArray) => {
 
-        let errors = [];
+      let errors = [];
 
-        res.write('{"source":' + JSON.stringify(jsonArray) + ', "errors":')
+      await vd.validateEquipment(jsonArray, vdm.equipmentMap, errors);
 
-        await vd.validateEquipment(jsonArray, vdm.equipmentMap, errors);
-
-        res.write(JSON.stringify(errors))
-        res.end('}')
-        console.log("Endpoint2 reached.");
+      res.end(JSON.stringify(errors))
+      console.log("Endpoint reached.");
     } 
   )
 
