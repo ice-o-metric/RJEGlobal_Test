@@ -21,6 +21,9 @@ function validateColumns(equipmentList, fieldMap, errors) {
         let field = fieldMap.get(headers[col]);
         if (field) {
             field.colIndex = col;
+        } else {
+            //Unmapped column detected! This is an Unknown Field
+            errors.push(new lineError(`Unknown column detected: '${headers[col]}`, 'N/A', 'N/A'))
         }
     }
 
