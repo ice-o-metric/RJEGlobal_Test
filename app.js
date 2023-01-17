@@ -1,6 +1,7 @@
 const csv = require('csvtojson');
 const vd = require('./validation/validators');
 const vdm = require('./validation/validationMaps');
+const out = require('./views/ShowErrors');
 
 const http = require('http');
 
@@ -18,8 +19,9 @@ const server = http.createServer((req, res) => {
 
       await vd.validateEquipment(jsonArray, vdm.equipmentMap, errors);
 
-      res.end(JSON.stringify(errors))
-      console.log("Endpoint reached.");
+      //res.end(JSON.stringify(errors))
+      res.end(out.ShowErrors(errors))
+      console.log("New Endpoint reached.");
     } 
   )
 
